@@ -23,4 +23,26 @@ public class RecursionLibrary {
            printRec2(x+1, n);
        }
    }
+   
+   public int sumaUp(int n){
+       if(n >= 1)
+           return sumaUp(n-1)+n;
+       return 0;
+   }
+   
+   public int sumaDown(int n){
+       return sumaDown(n,0);
+   }
+   
+   private int sumaDown(int n, int suma){
+       if(n >= 1)
+           return sumaDown(n-1, suma+n);
+       return suma;
+   }
+   
+   public int potencia(int b, int e){
+       if(e > 0)
+           return b * potencia(b,e-1);
+       return 1;
+   }
 }
