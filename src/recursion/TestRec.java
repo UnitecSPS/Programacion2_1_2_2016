@@ -22,6 +22,7 @@ public class TestRec {
             System.out.println("1- Impriminir 1 a n");
             System.out.println("2- Sumatoria 1 a n");
             System.out.println("3- Potencia");
+            System.out.println("4- MCD");
             System.out.println("Escoja Opcion: ");
             op = lea.nextInt();
             
@@ -39,6 +40,20 @@ public class TestRec {
                     System.out.println("Suma Up: "+ rl.sumaUp(num));
                     System.out.println("Suma Down: "+ rl.sumaDown(num));
                     break;
+                case 3:
+                    System.out.print("Base: ");
+                    int b = lea.nextInt();
+                    System.out.print("Expo: ");
+                    int e = lea.nextInt();
+                    System.out.println("Pot Up: "+rl.potencia(b, e));
+                    System.out.println("Pot Down: "+rl.potDown(b, e));
+                    break;
+                case 4:
+                    System.out.print("N1: ");
+                    int n1 = lea.nextInt();
+                    System.out.print("N2: ");
+                    int n2 = lea.nextInt();
+                    System.out.println("MCD: "+ rl.mcd(n1,n2));
             }
         }while(op!=8);
         

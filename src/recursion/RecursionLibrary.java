@@ -45,4 +45,28 @@ public class RecursionLibrary {
            return b * potencia(b,e-1);
        return 1;
    }
+   
+   public int potDown(int b,int e){
+       return potDown(b,e,1);
+   }
+   
+   private int potDown(int b, int e, int pot){
+       if( e >= 1)
+           return potDown(b,e-1,pot * b );
+       return pot;
+   
+   }
+
+   public int mcd(int n1, int n2) {
+       return mcd(n1, n2, 2);
+   }
+
+    private int mcd(int n1, int n2, int d) {
+        if(n1 >= d && n2 >= d){
+            if(n1 % d == 0 && n2 % d == 0)
+                return mcd(n1/d,n2/d,d) * d;
+            return mcd(n1,n2,d+1);
+        }
+        return 1;
+    }
 }
