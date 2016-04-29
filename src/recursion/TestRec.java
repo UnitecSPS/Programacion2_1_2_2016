@@ -15,6 +15,7 @@ public class TestRec {
     public static void main(String[] args) {
         RecursionLibrary rl = new RecursionLibrary();
         Scanner lea = new Scanner(System.in);
+        int array[] = { 2, 6, 8, 7, 1 };
         int op, num;
         
         do{
@@ -23,6 +24,9 @@ public class TestRec {
             System.out.println("2- Sumatoria 1 a n");
             System.out.println("3- Potencia");
             System.out.println("4- MCD");
+            System.out.println("5- Buscar en Arreglo");
+            System.out.println("6- Palindromo");
+            System.out.println("7- Fibonacci");
             System.out.println("Escoja Opcion: ");
             op = lea.nextInt();
             
@@ -54,6 +58,25 @@ public class TestRec {
                     System.out.print("N2: ");
                     int n2 = lea.nextInt();
                     System.out.println("MCD: "+ rl.mcd(n1,n2));
+                    break;
+                case 5:
+                    System.out.println("Numero a buscar: ");
+                    if( rl.search(array, lea.nextInt()))
+                        System.out.println("Si existe");
+                    else
+                        System.out.println("No Existe");
+                    break;
+                case 6:
+                    System.out.println("Cadena: ");
+                    if(rl.palindromo(lea.next()))
+                        System.out.println("Es Palindromo");
+                    else
+                        System.out.println("No es Palindromo");
+                    break;
+                case 7:
+                    System.out.println("Numero: ");
+                    int fibo = rl.fibonacci(lea.nextInt());
+                    System.out.println("Fibonacci: "+fibo);
             }
         }while(op!=8);
         

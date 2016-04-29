@@ -69,4 +69,36 @@ public class RecursionLibrary {
         }
         return 1;
     }
+    
+    public boolean search(int array[], int val){
+        return search(array, val, 0);
+    }
+
+    private boolean search(int[] array, int val, int pos) {
+        if( pos < array.length ){
+            if(array[pos] == val)
+                return true;
+             return search(array, val, pos+1);
+        }
+        return false;
+    }
+    
+    public boolean palindromo(String cad){
+        return palindromo(cad,0,cad.length()-1);
+    }
+
+    private boolean palindromo(String cad, int inicio, int fin) {
+        if(inicio < fin){
+            if(cad.charAt(inicio) == cad.charAt(fin))
+                return palindromo(cad,inicio+1,fin-1);
+            return false;
+        }
+        return true;
+    }
+    
+    public int fibonacci(int n){
+        if(n > 1)
+            return fibonacci(n-1)+fibonacci(n-2);
+        return n;
+    }
 }
