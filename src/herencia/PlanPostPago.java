@@ -16,6 +16,23 @@ public class PlanPostPago extends Plan {
     
     public PlanPostPago(int n, String c){
         super(n,c);
+        saldo = 5;
         corte = Calendar.getInstance();
+    }
+
+    public Calendar getCorte() {
+        return corte;
+    }
+    
+    @Override
+    public double pagar(){
+        System.out.println("Saldo al "+
+                corte.getTime()+": "+saldo);
+        return saldo;
+    }
+    
+    @Override
+    public String toString(){
+        return "PostPago: "+super.toString()+" Corte: "+corte.getTime();
     }
 }

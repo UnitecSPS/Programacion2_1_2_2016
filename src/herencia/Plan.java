@@ -45,5 +45,15 @@ public class Plan {
         return saldo;
     }
     
+    public double pagar(){
+        System.out.println("Saldo: "+saldo);
+        return saldo;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + "numero=" + numero + ", cliente=" + cliente + ", celular=" + celular + ", saldo=" + saldo + '}';
+    }
+    
     
 }
