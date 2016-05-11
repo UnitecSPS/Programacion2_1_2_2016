@@ -11,7 +11,7 @@ import java.util.Calendar;
  *
  * @author Docente
  */
-public class Plan {
+public abstract class Plan {
     protected int numero;
     protected String cliente, celular;
     protected Calendar ultimoUso;
@@ -45,10 +45,9 @@ public class Plan {
         return saldo;
     }
     
-    public double pagar(){
-        System.out.println("Saldo: "+saldo);
-        return saldo;
-    }
+    public abstract double pagar();
+    public abstract void print();
+    public abstract void call(int mins);
 
     @Override
     public String toString() {
