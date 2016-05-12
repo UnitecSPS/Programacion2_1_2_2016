@@ -9,13 +9,13 @@ package herencia;
  *
  * @author Docente
  */
-public class PlanTarjeta extends Plan {
+public final class PlanTarjeta extends Plan {
     
     public PlanTarjeta(int n, String c) {
         super(n, c);
     }
     
-    public void aplicarCard(double monto){
+    public final void aplicarCard(double monto){
         saldo += monto;
     }
 

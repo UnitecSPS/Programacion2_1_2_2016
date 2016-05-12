@@ -21,6 +21,7 @@ public class PlanPostPago extends Plan {
         corte = Calendar.getInstance();
         corte.add(Calendar.MONTH,1);
     }
+    
 
     public Calendar getCorte() {
         return corte;

@@ -12,6 +12,7 @@ import java.util.Calendar;
  * @author Docente
  */
 public abstract class Plan {
+    public static final int VERSION = 1;
     protected int numero;
     protected String cliente, celular;
     protected Calendar ultimoUso;
@@ -25,11 +26,11 @@ public abstract class Plan {
         saldo = 0;
     }
 
-    public int getNumero() {
+    public final int getNumero() {
         return numero;
     }
 
-    public String getCliente() {
+    public final String getCliente() {
         return cliente;
     }
 

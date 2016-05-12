@@ -5,12 +5,17 @@
  */
 package herencia;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Docente
  */
 public class JavaCell {
     public static void main(String[] args) {
+        Scanner lea;
+        //Plan.VERSION = 2;
+        System.out.println(Plan.VERSION);
         /*
         MENU:
             LA COLECCION QUE SEA UN ARRAYLIST

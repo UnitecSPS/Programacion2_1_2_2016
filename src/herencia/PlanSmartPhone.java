@@ -9,7 +9,7 @@ package herencia;
  *
  * @author Docente
  */
-public class PlanSmartPhone extends PlanPostPago {
+public final class PlanSmartPhone extends PlanPostPago {
     public double planInternet;
     
     public PlanSmartPhone(int n, String c, double i) {
