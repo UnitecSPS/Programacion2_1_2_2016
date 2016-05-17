@@ -11,14 +11,16 @@ package herencia;
  */
 public final class PlanSmartPhone extends PlanPostPago {
     public double planInternet;
+    public static final int MIN_INTERNET=15;
     
-    public PlanSmartPhone(int n, String c, double i) {
+    public PlanSmartPhone(int n, String c) {
         super(n, c);
-        planInternet = i;
+        planInternet = MIN_INTERNET;
     }
 
-    public void setPlanInternet(double planInternet) {
-        this.planInternet = planInternet;
+    public void setPlanInternet(double pi) {
+        if(pi > MIN_INTERNET)
+            planInternet = pi;
     }
 
     @Override
@@ -26,6 +28,8 @@ public final class PlanSmartPhone extends PlanPostPago {
         return super.pagar()+planInternet; 
     }
     
-    
+    public String toString(){
+        return "SmartPhone: "+super.toString()+" Internet: "+planInternet;
+    }
     
 }
