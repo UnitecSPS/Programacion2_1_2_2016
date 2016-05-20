@@ -22,7 +22,7 @@ MENU:
     7- Pagar una cuenta de un plan
 */
 public class JavaCell {
-    private static Almacenable manager = new PlanFiles();
+    private static Almacenable manager = new PlanList();
     private static Scanner lea = new Scanner(System.in);
     
     public static void main(String[] args) {
@@ -39,6 +39,7 @@ public class JavaCell {
             System.out.println("3- Imprimir un plan");
             System.out.println("4- Listar Planes");
             System.out.println("5- Aplicar Tarjeta");
+            System.out.println("6- Cambiar Plan Internet");
             System.out.println("8- Salir");
             System.out.print("Escoja opcion: ");
             op = lea.nextInt();
@@ -59,6 +60,8 @@ public class JavaCell {
                 case 5:
                     applyCard();
                     break;
+                case 6:
+                    setInternet();
             }
         }while(op!=8);
     }
@@ -68,22 +71,24 @@ public class JavaCell {
         int num = lea.nextInt();
         System.out.println("Nombre: ");
         String c = lea.next();
+        System.out.println("TIPOS DISPONIBLES:\n--------");
+        for(TipoPlan t : TipoPlan.values())
+            System.out.println("-"+t);
         System.out.println("Tipo: ");
-        String t = lea.next();
+        TipoPlan t = TipoPlan.valueOf(lea.next().toUpperCase());
         
         if(manager.searchPlan(num) == null){
-            switch(t.toUpperCase()){
-                case "POSTPAGO":
+            switch(t){
+                case POSTPAGO:
                     manager.savePlan(new PlanPostPago(num, c));
                     break;
-                case "TARJETA":
+                case TARJETA:
                     manager.savePlan(new PlanTarjeta(num, c));
                     break;
-                case "SMART":
+                case SMART:
                     manager.savePlan(new PlanSmartPhone(num, c));
                     break;
-                default:
-                    System.out.println("Tipo Incorrecto");
+          
             }
         }
         else
@@ -122,5 +127,20 @@ public class JavaCell {
        }
        else
             System.out.println("No se encuentra ese plan de tarjeta");
+    }
+
+    private static void setInternet() {
+       
+       System.out.println("Numero origen: ");
+       int no = lea.nextInt();
+       System.out.println("Plan Internet: ");
+       TipoInternet ti = TipoInternet.valueOf(lea.next().toUpperCase());
+       
+       Plan p = manager.searchPlan(no);
+       
+       if(p instanceof PlanSmartPhone)
+           ((PlanSmartPhone)p).setPlanInternet(ti);
+       else
+            System.out.println("No se encontro o no es smart plan");
     }
 }
