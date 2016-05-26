@@ -5,6 +5,8 @@
  */
 package herencia;
 
+import errores.TarjetaInvalidaException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -30,7 +32,7 @@ public class JavaCell {
         //Plan.VERSION = 2;
         System.out.println(Plan.VERSION);
         
-        int op;
+        int op=0;
         
         do{
             System.out.println("\nMENU\n------------");
@@ -42,26 +44,40 @@ public class JavaCell {
             System.out.println("6- Cambiar Plan Internet");
             System.out.println("8- Salir");
             System.out.print("Escoja opcion: ");
-            op = lea.nextInt();
             
-            switch(op){
-                case 1:
-                    addPlan();
-                    break;
-                case 2:
-                    call();
-                    break;
-                case 3:
-                    System.out.println("TODO");
-                    break;
-                case 4:
-                    list();
-                    break;
-                case 5:
-                    applyCard();
-                    break;
-                case 6:
-                    setInternet();
+            try{
+                op = lea.nextInt();
+
+                switch(op){
+                    case 1:
+                        addPlan();
+                        break;
+                    case 2:
+                        call();
+                        break;
+                    case 3:
+                        System.out.println("TODO");
+                        break;
+                    case 4:
+                        list();
+                        break;
+                    case 5:
+                        applyCard();
+                        break;
+                    case 6:
+                        setInternet();
+                }
+            }
+            catch(InputMismatchException e){
+                System.out.println("Por favor ingrese un entero");
+                lea.next();
+            }
+            catch(TarjetaInvalidaException e){
+                System.out.println(e.getMessage());
+                System.out.println("Por favor ingrese una tarjeta valida");
+            }
+            catch(IllegalArgumentException e){
+                System.out.println("Plan Incorrecto");
             }
         }while(op!=8);
     }

@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class TestTryCatch {
     public static void main(String[] args) {
         System.out.println("Iniciando Main");
+        //int x = 5/0;
         try{
             System.out.println("Iniciando Try");
             a();
@@ -22,6 +23,7 @@ public class TestTryCatch {
         }
         catch(InputMismatchException e){
             System.out.println("Por favor ingrese un entero");
+            //throw e;
         }
         catch(NumberFormatException e){
             System.out.println("Valor no es entero");
@@ -35,6 +37,9 @@ public class TestTryCatch {
         catch(Exception e){
             System.out.println("Error: "+e);
             e.printStackTrace();
+        }
+        finally{
+            cerrarConexion();
         }
             
         System.out.println("Finalizando Main");
@@ -58,5 +63,10 @@ public class TestTryCatch {
         System.out.println("10/"+x+": "+(10/x));
         //-----
         System.out.println("Finalizando b()");
+    }
+
+    private static void cerrarConexion() {
+        System.out.println("Cerrando conexion.....");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

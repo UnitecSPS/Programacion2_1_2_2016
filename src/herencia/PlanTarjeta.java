@@ -5,6 +5,8 @@
  */
 package herencia;
 
+import errores.TarjetaInvalidaException;
+
 /**
  *
  * @author Docente
@@ -16,7 +18,10 @@ public final class PlanTarjeta extends Plan {
     }
     
     public final void aplicarCard(double monto){
-        saldo += monto;
+        if(monto > 0)
+            saldo += monto;
+        else
+            throw new TarjetaInvalidaException(monto);
     }
 
     @Override
