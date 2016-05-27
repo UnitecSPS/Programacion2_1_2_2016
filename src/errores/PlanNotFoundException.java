@@ -9,9 +9,9 @@ package errores;
  *
  * @author Docente
  */
-public class TarjetaInvalidaException extends Exception {
+public class PlanNotFoundException extends RuntimeException {
     
-    public TarjetaInvalidaException(double m){
-        super("Monto "+m+" invalido para Tarjeta");
+    public PlanNotFoundException(int num){
+        super("Plan con el numero "+num+" no existe");
     }
 }

@@ -5,6 +5,7 @@
  */
 package herencia;
 
+import errores.PlanNotFoundException;
 import errores.TarjetaInvalidaException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class JavaCell {
     private static Almacenable manager = new PlanList();
     private static Scanner lea = new Scanner(System.in);
     
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         //Plan.VERSION = 2;
         System.out.println(Plan.VERSION);
@@ -56,7 +57,8 @@ public class JavaCell {
                         call();
                         break;
                     case 3:
-                        System.out.println("TODO");
+                        System.out.print("Numero: ");
+                        printPlan(lea.nextInt());
                         break;
                     case 4:
                         list();
@@ -69,7 +71,7 @@ public class JavaCell {
                 }
             }
             catch(InputMismatchException e){
-                System.out.println("Por favor ingrese un entero");
+                System.err.println("Por favor ingrese un entero");
                 lea.next();
             }
             catch(TarjetaInvalidaException e){
@@ -78,6 +80,15 @@ public class JavaCell {
             }
             catch(IllegalArgumentException e){
                 System.out.println("Plan Incorrecto");
+            }
+            catch(NullPointerException e){
+                e.printStackTrace();
+            }
+            catch(PlanNotFoundException e){
+                System.out.println(e.getMessage());
+            }
+            finally{
+                System.out.println("Cargando Menu...");
             }
         }while(op!=8);
     }
@@ -130,7 +141,7 @@ public class JavaCell {
         manager.list();
     }
 
-    private static void applyCard() {
+    private static void applyCard()throws TarjetaInvalidaException {
        System.out.println("Numero origen: ");
        int no = lea.nextInt();
        System.out.println("Monto: ");
@@ -158,5 +169,14 @@ public class JavaCell {
            ((PlanSmartPhone)p).setPlanInternet(ti);
        else
             System.out.println("No se encontro o no es smart plan");
+    }
+
+    private static void printPlan(int numero) {
+        Plan p = manager.searchPlan(numero);//search(numero);
+        
+        if(p!=null)
+            System.out.println(p);
+        else
+            throw new PlanNotFoundException(numero);
     }
 }

@@ -17,7 +17,7 @@ public final class PlanTarjeta extends Plan {
         super(n, c);
     }
     
-    public final void aplicarCard(double monto){
+    public final void aplicarCard(double monto)throws TarjetaInvalidaException{
         if(monto > 0)
             saldo += monto;
         else
