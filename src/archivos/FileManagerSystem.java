@@ -5,6 +5,7 @@
  */
 package archivos;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,6 +26,9 @@ public class FileManagerSystem {
             System.out.println("1- Set el Path");
             System.out.println("2- Ver Informacion");
             System.out.println("3- Crear Archivo");
+            System.out.println("4- Crear Directorio");
+            System.out.println("5- Borrar");
+            System.out.println("6- Renombrar");
             System.out.println("7- Salir");
             System.out.print("Escoja opcion: ");
             
@@ -42,6 +46,12 @@ public class FileManagerSystem {
                     case 3:
                         manager.createFile();
                         break;
+                    case 4:
+                        manager.createDir();
+                        break;
+                    case 5:
+                        manager.delete();
+                        break;
                 }
             }
             catch(InputMismatchException e){
@@ -49,6 +59,9 @@ public class FileManagerSystem {
             }
             catch(NullPointerException e){
                 System.out.println("Por favor escoja la opcion 1 primero");
+            }
+            catch(IOException e){
+                System.out.println("Error en Archivo: "+e.getMessage());
             }
             
         }while(op!=7);

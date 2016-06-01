@@ -6,6 +6,7 @@
 package archivos;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -47,9 +48,16 @@ public class FileManager {
             System.out.println("Lo que manejas Aun no existe");
     }
 
-    void createFile() {
-        //intenta crear un archivo
-        //como es booleana, se imprime si se pudo crear
-        //o no. Cualquier error se deja propagar
+    void createFile()throws IOException {
+        if(file.createNewFile())
+            System.out.println("Archivo creado con Exito");
+        else
+            System.out.println("No se pudo crear archivo");
+    }
+
+    void createDir() {
+    }
+
+    void delete() {
     }
 }
