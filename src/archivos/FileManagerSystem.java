@@ -21,8 +21,10 @@ public class FileManagerSystem {
         int op=0;
         
         do{
+            System.out.println("\n---MENU------");
             System.out.println("1- Set el Path");
             System.out.println("2- Ver Informacion");
+            System.out.println("3- Crear Archivo");
             System.out.println("7- Salir");
             System.out.print("Escoja opcion: ");
             
@@ -31,13 +33,22 @@ public class FileManagerSystem {
                 
                 switch(op){
                     case 1:
+                        System.out.println("Direccion: ");
+                        manager.setFile(lea.next());
                         break;
                     case 2:
+                        manager.viewInfo();
+                        break;
+                    case 3:
+                        manager.createFile();
                         break;
                 }
             }
             catch(InputMismatchException e){
                 System.out.println("Por favor ingrese una opcion correcta");
+            }
+            catch(NullPointerException e){
+                System.out.println("Por favor escoja la opcion 1 primero");
             }
             
         }while(op!=7);
