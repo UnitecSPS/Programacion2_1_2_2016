@@ -56,8 +56,17 @@ public class FileManager {
     }
 
     void createDir() {
+        if(file.mkdir())
+            System.out.println("Folder creado con Exito");
+        else
+            System.out.println("No se pudo crear Folder");
     }
 
     void delete() {
+        //file.delete()
+    }
+    
+    void rename(String newname){
+        //file.renameTo(file)
     }
 }
