@@ -79,6 +79,36 @@ public class FileManager {
     }
     
     void dir(){
+        int dirs=0, files=0, bytes=0;
         
+        if(file.isDirectory()){
+            System.out.println("Directorio de: " + file.getAbsolutePath());
+            
+            for(File child : file.listFiles()){
+                if(!child.isHidden()){
+                    //ultima fecha
+                    Date ultima = new Date(child.lastModified());
+                    //si es dir o file
+                    String dir="",file="";
+                    if(child.isDirectory()){
+                        dir="<DIR>";
+                        dirs++;
+                    }
+                    else if(child.isFile()){
+                        file=""+child.length();
+                        files++;
+                        bytes += child.length();
+                    }
+                    //nombre
+                    String name = child.getName();
+                    System.out.printf("%-5s %-5s %-5s %-5s\n",ultima.toString(),
+                            dir, file, name);
+                }
+            }
+            System.out.println(files+" file(s) "+bytes+" byte(s)");
+            System.out.println(dirs+" dir(s) "+file.getFreeSpace()+" Free Space");
+        }
+        else
+            System.out.println("No disponible para archivos");
     }
 }
