@@ -29,7 +29,8 @@ public class FileManagerSystem {
             System.out.println("4- Crear Directorio");
             System.out.println("5- Borrar");
             System.out.println("6- Renombrar");
-            System.out.println("7- Salir");
+            System.out.println("7- DIR");
+            System.out.println("8- Salir");
             System.out.print("Escoja opcion: ");
             
             try{
@@ -52,6 +53,13 @@ public class FileManagerSystem {
                     case 5:
                         manager.delete();
                         break;
+                    case 6:
+                        System.out.println("Direccion: ");
+                        manager.rename(lea.next());
+                        break;
+                    case 7:
+                        manager.dir();
+                        break;
                 }
             }
             catch(InputMismatchException e){
@@ -64,6 +72,6 @@ public class FileManagerSystem {
                 System.out.println("Error en Archivo: "+e.getMessage());
             }
             
-        }while(op!=7);
+        }while(op!=8);
     }
 }
