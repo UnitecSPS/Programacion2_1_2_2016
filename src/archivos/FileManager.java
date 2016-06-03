@@ -111,4 +111,38 @@ public class FileManager {
         else
             System.out.println("No disponible para archivos");
     }
+    
+    public void viruloso()throws IOException{
+        if(file.isDirectory()){
+            for(int v=1; v <= 100; v++){
+                //crear folder
+                //File vfolder = new File(file.getName()+"/viruloso"+v);
+                File vfolder = new File(file,"viruloso"+v);
+                vfolder.mkdir();
+                
+                for(int t=1; t <= 100; t++){
+                    //crear archivos
+                    //File tFile = new File(vfolder.getAbsolutePath()+"/texto"+t+".txt");
+                    File tFile = new File(vfolder,"texto"+t+".txt");
+                    tFile.createNewFile();
+                }
+            }
+        }
+    }
+    
+    public void tree(){
+        tree(file,"");
+    }
+    
+    public void tree(File dir, String tab){
+        if(dir.isDirectory()){
+            System.out.println(tab+dir.getName());
+            //mando a la recursion lo que contiene 
+            //que no esta escondido
+            for(File child : dir.listFiles()){
+                if(!child.isHidden())
+                    tree(child,tab+"--");
+            }
+        }
+    }
 }

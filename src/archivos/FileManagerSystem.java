@@ -30,7 +30,9 @@ public class FileManagerSystem {
             System.out.println("5- Borrar");
             System.out.println("6- Renombrar");
             System.out.println("7- DIR");
-            System.out.println("8- Salir");
+            System.out.println("8- TREE");
+            System.out.println("9- Viruloso");
+            System.out.println("10- Salir");
             System.out.print("Escoja opcion: ");
             
             try{
@@ -60,6 +62,11 @@ public class FileManagerSystem {
                     case 7:
                         manager.dir();
                         break;
+                    case 8:
+                        manager.tree();
+                        break;
+                    case 9:
+                        manager.viruloso();
                 }
             }
             catch(InputMismatchException e){
@@ -72,6 +79,6 @@ public class FileManagerSystem {
                 System.out.println("Error en Archivo: "+e.getMessage());
             }
             
-        }while(op!=8);
+        }while(op!=10);
     }
 }
