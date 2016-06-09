@@ -68,6 +68,9 @@ nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
 College/*
+
+#Jtunes files
+data/*
  
 #java specific
 *.class
