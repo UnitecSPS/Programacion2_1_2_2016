@@ -69,4 +69,24 @@ public class JTunes {
             rcs.writeInt(1);
         }
     }
+    
+    void addNewSong(String ns, String na, Genero gen, double prec){
+        
+    }
+
+    void listSongsAvailables() {
+        
+    }
+    
+    void viewSongInfo(int cod){
+        
+    }
+    
+    boolean changeSongPrice(int cod, double newPrice){
+        return false;
+    }
+    
+    void reviewSong(int cod, int stars){
+        
+    }
 }
