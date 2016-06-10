@@ -152,6 +152,25 @@ public class JTunes {
         if(searchSong(cod)){
             //lo encontre! y el puntero esta justo
             //al inicio del nombre
+            String ns = rss.readUTF();
+            String na = rss.readUTF();
+            String gen = rss.readUTF();
+            double p = rss.readDouble();
+            int cr = rss.readInt();
+            int stars = rss.readInt();
+            int cd = rss.readInt();
+            boolean status = rss.readBoolean();
+            
+            double review=0;
+            if(cr > 0)
+                review = stars/cr;
+            
+            System.out.println(ns+" by "+na);
+            System.out.println("$"+p);
+            System.out.println("Review: "+review);
+            System.out.println(cd+" veces bajada.");
+            System.out.println("Esta cancion esta"+
+                    (status ? "" : "no")+" disponible");
         }
         else
             System.out.println("Cancion No existe");
