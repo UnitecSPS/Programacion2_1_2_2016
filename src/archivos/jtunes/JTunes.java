@@ -17,6 +17,9 @@ public class JTunes {
     
     private RandomAccessFile rss, rcs;
     
+    public final static long SONG_OFFSET = 0;
+    public final static long DOWNLOAD_OFFSET = 4;
+    
     
     //FORMATO DE ARCHIVOS
     //Todos los archivos los vamos a guardar dentro de un
@@ -70,12 +73,54 @@ public class JTunes {
         }
     }
     
-    void addNewSong(String ns, String na, Genero gen, double prec){
-        
+    private int getCode(long offset) throws IOException{
+        rcs.seek(offset);
+        int code = rcs.readInt();
+        rcs.seek(offset);
+        rcs.writeInt(code+1);
+        return code;
+    }
+    
+    void addNewSong(String ns, String na, Genero gen, double prec) throws IOException{
+        rss.seek(rss.length());
+        //codigo
+        int code = getCode(SONG_OFFSET);
+        rss.writeInt(code);
+        //nombre
+        rss.writeUTF(ns);
+        //artista
+        rss.writeUTF(na);
+        //genero
+        rss.writeUTF(gen.name());
+        //precio
+        rss.writeDouble(prec);
+        //cant revs
+        rss.writeInt(0);
+        //suma stars
+        rss.writeInt(0);
+        //downloads
+        rss.writeInt(0);
+        //available
+        rss.writeBoolean(true);
     }
 
-    void listSongsAvailables() {
-        
+    /**
+     * Imprimir CODE-NS-NA-PRECIO
+     */
+    void listSongsAvailables()throws IOException {
+        rss.seek(0);
+        System.out.println("\nAVAILABLE SONGS\n----------");
+        while(rss.getFilePointer() < rss.length()){
+            int code = rss.readInt();
+            String ns = rss.readUTF();
+            String na = rss.readUTF();
+            rss.readUTF();//genero
+            double p = rss.readDouble();
+            rss.skipBytes(12);
+            if(rss.readBoolean()){
+                System.out.println(code+"-"+ns+"-"+na+" $"+p);
+            }
+        }
     }
     
     void viewSongInfo(int cod){

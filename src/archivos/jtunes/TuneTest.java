@@ -22,6 +22,7 @@ public class TuneTest {
         int op=0;
         
         do{
+            System.out.println("\n---MENU-------");
             System.out.println("1- Agregar Cancion");
             System.out.println("2- Listar Canciones Disponibles");
             System.out.println("3- Ver Información de Cancion");
@@ -54,19 +55,29 @@ public class TuneTest {
                         break;
                 }
             }
-            catch(IOException e){
-                System.out.println("Error: "+e.getMessage());
-            }
             catch(InputMismatchException e){
                 lea.next();
                 System.out.println("Ingrese un entero");
+            }
+            catch(Exception e){
+                System.out.println("Error: "+e.getMessage());
             }
         }while(op!=8);
         
     }
 
     private static void addSong()throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.print("Nombre Cancion: ");
+        String ns = lea.next();
+        System.out.print("Nombre Artista: ");
+        String na = lea.next();
+        System.out.print("Genero: ");
+        Genero gen = Genero.valueOf(lea.next().toUpperCase());
+        System.out.print("Precio: ");
+        double p = lea.nextDouble();
+        
+        jtunes.addNewSong(ns, na, gen, p);
+        
     }
 
     private static void changePrice() {
