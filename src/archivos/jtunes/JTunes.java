@@ -123,8 +123,38 @@ public class JTunes {
         }
     }
     
-    void viewSongInfo(int cod){
+    /**
+     * Buscar la cancion que coincide con ese codigo
+     * SI lo encuentro retorno true y dejo el puntero
+     * justo DESPUES del codigo
+     * @param code Codigo de la cancion
+     * @return Si lo encontre o no
+     * @throws IOException 
+     */
+    boolean searchSong(int code)throws IOException{
+        rss.seek(0);
         
+        while(rss.getFilePointer() < rss.length()){
+            if(rss.readInt() == code){
+                return true;
+            }
+            //movemos el puntero hasta el final del archivo
+            rss.readUTF();//ns
+            rss.readUTF();//na
+            rss.readUTF();//gen
+            rss.skipBytes(21);//lo que resta
+        }
+        return false;
+    }
+            
+    
+    void viewSongInfo(int cod) throws IOException{
+        if(searchSong(cod)){
+            //lo encontre! y el puntero esta justo
+            //al inicio del nombre
+        }
+        else
+            System.out.println("Cancion No existe");
     }
     
     boolean changeSongPrice(int cod, double newPrice){
