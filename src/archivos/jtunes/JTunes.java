@@ -177,10 +177,61 @@ public class JTunes {
     }
     
     boolean changeSongPrice(int cod, double newPrice){
+        
         return false;
     }
     
-    void reviewSong(int cod, int stars){
+    boolean changeState(int cod){
+        return false;
+    }
+    
+    void reviewSong(int cod, int stars)throws IOException{
+        if(stars <0 || stars >5){
+            System.out.println("Review Erroneo");
+            return;
+        }
         
+        rss.seek(0);
+        
+        while(rss.getFilePointer() < rss.length()){
+            int n = rss.readInt();
+            String no = rss.readUTF();
+            String na = rss.readUTF();
+            rss.readUTF();
+            rss.readDouble();
+            //guardo la pos antes de los datos de review
+            long pos = rss.getFilePointer();
+            int cr = rss.readInt();
+            int ce = rss.readInt();
+            
+            if(n == cod){
+                rss.seek(pos);
+                rss.writeInt(cr+1);
+                rss.writeInt(ce+stars);
+                System.out.println(no+" by "+na+" ha sido calificada.");
+                return;
+            }
+            
+            rss.skipBytes(5);
+        }
+    }
+    
+    private DownloadItem readyForDownload(int cod)throws IOException{
+        if(searchSong(cod)){
+            String nc = rss.readUTF();
+            String na = rss.readUTF();
+            rss.readUTF();
+            double p = rss.readDouble();
+            rss.skipBytes(8);
+            long pos = rss.getFilePointer();
+            int cd = rss.readInt();
+            
+            if(rss.readBoolean()){
+                rss.seek(pos);
+                rss.writeInt(cd+1);
+                return new DownloadItem(nc, na, p);
+            }
+        }
+        return null;
     }
 }

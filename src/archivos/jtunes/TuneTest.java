@@ -84,7 +84,12 @@ public class TuneTest {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private static void review() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void review()throws IOException {
+        System.out.print("Codigo: ");
+        int cod = lea.nextInt();
+        System.out.print("Stars 0-5: ");
+        int stars = lea.nextInt();
+        
+        jtunes.reviewSong(cod, stars);
     }
 }
