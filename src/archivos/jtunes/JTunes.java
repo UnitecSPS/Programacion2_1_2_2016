@@ -8,6 +8,7 @@ package archivos.jtunes;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Calendar;
 
 /**
  *
@@ -58,7 +59,7 @@ public class JTunes {
      */
     public JTunes(){
         try{
-            new File("data").mkdir();
+            new File("data/downloads").mkdirs();
             rss = new RandomAccessFile("data/songs.jtn", "rw");
             rcs = new RandomAccessFile("data/codes.jtn", "rw");
             initCodes();
@@ -233,5 +234,48 @@ public class JTunes {
             }
         }
         return null;
+    }
+    
+    public void downloadSongs(String cliente) throws IOException{
+        int cd = getCode(DOWNLOAD_OFFSET);
+        RandomAccessFile rd = new RandomAccessFile("data/downloads/invoice_"+cd+
+                ".jtn", "rw");
+        //cliente
+        rd.writeUTF(cliente);
+        //fecha
+        rd.writeLong(Calendar.getInstance().getTimeInMillis());
+        
+        double t=0;
+        String resp;
+        
+        do{
+            System.out.print("Codigo: ");
+            int cod = TuneTest.lea.nextInt();
+            DownloadItem item = readyForDownload(cod);
+            
+            if(item != null){
+                System.out.println(item);
+                //codigo cancion
+                rd.writeInt(cod);
+                //precio
+                rd.writeDouble(item.price);
+                t += item.price;
+            }
+            else
+                System.out.println("Cancion No disponible");
+            
+            System.out.print("Otra Cancion? ");
+            resp = TuneTest.lea.next().toUpperCase();
+            
+        }while(resp.equals("SI"));
+        
+        System.out.println("Total: $"+t);
+        
+        rd.close();
+    }
+    
+    public void viewInvoice(int cd){
+        
+        
     }
 }

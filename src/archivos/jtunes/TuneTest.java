@@ -53,6 +53,10 @@ public class TuneTest {
                     case 5:
                         review();
                         break;
+                    case 6:
+                        System.out.print("Cliente: ");
+                        jtunes.downloadSongs(lea.next());
+                        break;
                 }
             }
             catch(InputMismatchException e){
