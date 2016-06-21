@@ -14,7 +14,11 @@ public class TestLista {
         Lista list = new Lista();
         
         list.add( new Nodo("Erasmo") );
+        list.add( new Nodo("Owen") );
+        list.add( new Nodo("Leo") );
+        list.add( new Nodo("Renan") );
         
-        System.out.println("raiz: "+list.raiz);
+        list.print();
+        
     }
 }

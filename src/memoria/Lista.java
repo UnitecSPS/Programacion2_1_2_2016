@@ -27,4 +27,14 @@ public class Lista {
         }
     }
     
+    public void print(){
+       
+        Nodo tmp = raiz;
+        while(tmp != null){
+            System.out.println(tmp.nombre);
+            tmp =tmp.siguiente;
+        }
+
+    }
+    
 }
